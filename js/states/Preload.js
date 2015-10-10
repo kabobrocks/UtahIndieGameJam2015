@@ -11,11 +11,14 @@ var PreloadState = {
 		game.load.setPreloadSprite(preloadbar);
 
 		//load all of the spritesheets
-		game.load.image('pirate','assets/pirate.png', 64, 64);
 		game.load.spritesheet('questionmark', 'assets/door.png', 64, 64);
 
 		//load all of the images
 		game.load.image('door', '/assets/door.png', 64, 64);
+		game.load.image('pirate','assets/pirate.png', 64,64);
+		game.load.image('bg-level1-sky','assets/bg-level1-sky.jpg');
+		game.load.image('bg-level1-front','assets/bg-level1-front.png');
+		game.load.image('bg-level1-middle','assets/bg-level1-middle.png');
 
 		//load any text images that we have
 
