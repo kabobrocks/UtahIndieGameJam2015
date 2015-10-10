@@ -25,7 +25,8 @@ function setupPlayer(playerX, playerY) {
     player.body.allowSleep = true; 
     player.body.setCollisionGroup(playerCG);
     player.body.setMaterial(playerMaterial);
-    player.body.collides([groundCG, levelEndCG]); //what is the player going to interact with
+    player.body.collides([groundCG, levelEndCG, questionmarkCG]); //what is the player going to interact with
+    player.body.createGroupCallback(questionmarkCG, hitQuestionmark);
     //player.body.createGroupCallback(levelEndCG, finishLevel); //when the player interacts with a collision group, what happens?
 
     setupPlayerLooks(player);
@@ -193,7 +194,6 @@ function playerInputActions(){
                 playerstate = 'idle';
             } 
         } else if ((cursors.up.isDown && !cursors.down.isDown || climb && !duck) && map.getTileWorldXY(player.body.x, player.body.y,32,32, layerropes)) { //On a climbing area? Climb!
-            console.log("climbing");
             climbing = true;
             player.body.data.gravityScale = 0;
             player.body.moveUp(150);

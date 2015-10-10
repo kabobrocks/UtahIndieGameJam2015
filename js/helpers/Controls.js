@@ -30,7 +30,7 @@ function jump_now(){
 	destroyAnchor();
 
 	if (climbing === true ) { //get out of climb mode
-		game.sound.play('jump');
+		game.sound.play('jump', .1);
 		player.body.moveUp(500);
 		player.body.data.gravityScale = 1; //give the player gravity again, as it is no longer on the climbable object
 		climbing = false;
@@ -48,11 +48,11 @@ function jump_now(){
 		player.body.velocity.y = -300; //start falling
 	} else { //just a normal jump doing jumping things
 		if (touchingDown(player.body)){ //if the player is touching the ground
-			game.sound.play('jump');
+			game.sound.play('jump', .1);
 			player.body.moveUp(700);
 			jumpHeightCounter = 1;
 		} else if (jumpHeightCounter == 1) { //oh you want to double jump?
-			game.sound.play('jump');
+			game.sound.play('jump', .1);
 			player.body.moveUp(700);
 			jumpHeightCounter = 0; //no more jumps available
 		}

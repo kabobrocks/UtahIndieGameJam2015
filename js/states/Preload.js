@@ -11,15 +11,19 @@ var PreloadState = {
 		game.load.setPreloadSprite(preloadbar);
 
 		//load all of the spritesheets
-		game.load.image('pirate','assets/pirate.png', 64,64);
+		game.load.image('pirate','assets/pirate.png', 64, 64);
+		game.load.spritesheet('questionmark', 'assets/door.png', 64, 64);
 
 		//load all of the images
+		game.load.image('door', '/assets/door.png', 64, 64);
 
 		//load any text images that we have
 
 		//load any weapons we may include
 
 		//load our sounds
+		game.load.audio('jump', '/assets/sounds/jump.wav');
+		game.load.audio('lose', '/assets/sounds/lose.wav');
 
 		//load our tilemaps
 		game.load.tilemap('level1', './assets/tilesets/level1.json', null, Phaser.Tilemap.TILED_JSON);

@@ -1,7 +1,6 @@
 //Level1 State
 var Level1 = {
 	create: function() {
-		console.log('level 1 loaded');
 		//reset the state variables
 		gamestate = 'running';
 		climbing = false;

@@ -5,6 +5,7 @@ var player_health = 1;  //lowest level is 1  - don't set to 3 without a gun (fir
 var weapon_selected = 'sword';  //fireflower, sword
 var player_chain = false; 
 var player_lives = 3;
+var player_keys = 2;
 var player_lives_reset = 3;
 var player_speed = 300;
 var air_friction = 300;

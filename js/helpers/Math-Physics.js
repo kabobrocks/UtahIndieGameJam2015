@@ -24,6 +24,18 @@ function setupPhysics() {
 	playerCG = game.physics.p2.createCollisionGroup();
 	groundCG = game.physics.p2.createCollisionGroup();
 	levelEndCG = game.physics.p2.createCollisionGroup(); //need to add the rules for it in Objects.js
+	questionmarkCG = game.physics.p2.createCollisionGroup();
+	playerCG = game.physics.p2.createCollisionGroup();
+    enemyAirCG = game.physics.p2.createCollisionGroup();
+    enemyGroundCG = game.physics.p2.createCollisionGroup();
+    enemyStaticCG = game.physics.p2.createCollisionGroup();
+    enemyboundsCG = game.physics.p2.createCollisionGroup();
+    groundCG = game.physics.p2.createCollisionGroup();
+    platformCG = game.physics.p2.createCollisionGroup();
+    fireballCG = game.physics.p2.createCollisionGroup();
+    questionmarkCG = game.physics.p2.createCollisionGroup();
+    powerupsCG = game.physics.p2.createCollisionGroup();
+    finishlineCG = game.physics.p2.createCollisionGroup();
 
 	//prevent rightclick contextmenu
 	game.canvas.oncontextmenu = function (e) {	e.preventDefault();	};
