@@ -13,6 +13,9 @@ function setupControls() {
 
 	jumpKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 	jumpKey.onDown.add(jump_now, this);  //only jump once per press
+
+	acceptKey = game.input.keyboard.addKey(Phaser.Keyboard.I);
+	acceptKey.onDown.add(interact_now, this);
 }
 
 //================================================================================
@@ -21,7 +24,7 @@ function setupControls() {
 
 var jumpspeedx = 0;
 
-function jump_now(){
+function jump_now() {
 	console.log("jump!");
 	if (gamestate == 'win' || gamestate == 'lost') {
 		return;
@@ -56,5 +59,13 @@ function jump_now(){
 			player.body.moveUp(700);
 			jumpHeightCounter = 0; //no more jumps available
 		}
+	}
+}
+
+function interact_now() {
+	if (AIText != null) {
+		console.log("I accept!");
+		AIText.kill();
+		AIText = null;
 	}
 }

@@ -1,5 +1,5 @@
 //some variables
-var level = 0;  //change this to start in a different level
+var level = 1;  //change this to start in a different level
 var levels = 7;  // 0, 1, 2 ,3, 4 ,5, 6  Don't forget to change this! (and add the state)
 var player_health = 1;  //lowest level is 1  - don't set to 3 without a gun (fireflower)
 var weapon_selected = 'sword';  //fireflower, sword
@@ -16,6 +16,8 @@ var playerstate = 'idle';
 var savepointX = 0;
 var savepointY = 0;
 var saved = false;
+
+var AIText;
 
 var worldwidth = 800;
 var worldheight = 480;

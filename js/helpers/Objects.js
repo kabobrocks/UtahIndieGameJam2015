@@ -52,6 +52,11 @@ function createObjects(currentState){
     map.createFromObjects('objects', 150, 'questionmark', 1, true, false, coins); //questionmark  (99 eckunten rechts)
     coins.forEach(ApplyQuestionSprite, this);
     gameObjects.add(coins);
+
+    pirateAI = game.add.group();
+    map.createFromObjects('objects', 95, 'questionmark', 1, true, false, pirateAI);
+    pirateAI.forEach(ApplyPirateSprite, this);
+    gameObjects.add(pirateAI);
 }
 
 function DoorIt(door){
@@ -75,6 +80,16 @@ function ApplyQuestionSprite(questionmark){
     questionmark.body.setMaterial(groundMaterial);
 }
 
+function ApplyPirateSprite(pirateAI){
+    game.physics.p2.enable(pirateAI);
+    pirateAI.body.y += 32;  //since we are replacing a 32x32 tile with a 64x64 object we need to adjust
+    pirateAI.body.static=true;
+    pirateAI.body.sprite.name='coin';
+    pirateAI.body.setCollisionGroup(computerAICG);
+    pirateAI.body.collides([playerCG,fireballCG,powerupsCG]);
+    pirateAI.body.setMaterial(groundMaterial);
+}
+
 function hitQuestionmark(player,questionmark) {
     if (player_keys > 0) {
         player_keys--;
@@ -83,6 +98,16 @@ function hitQuestionmark(player,questionmark) {
         questionmark.sprite.kill();
         createDoorKeyUI();
     }
+}
+
+function interactWithNPC(player,computerAI) {
+    console.log("these happy days!");
+    if (AIText == null) {
+        AIText = game.add.sprite(400, 90, 'doorkey');
+        AIText.anchor.setTo(0.5, 0.5);
+        AIText.fixedToCamera = true;   
+    }
+    //doorKeyObjects.add(doorKey);
 }
 
 //================================================================================

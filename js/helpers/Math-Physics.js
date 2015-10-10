@@ -25,6 +25,7 @@ function setupPhysics() {
 	groundCG = game.physics.p2.createCollisionGroup();
 	levelEndCG = game.physics.p2.createCollisionGroup(); //need to add the rules for it in Objects.js
 	questionmarkCG = game.physics.p2.createCollisionGroup();
+	computerAICG = game.physics.p2.createCollisionGroup(); //the scary pirate ghost guys
 	playerCG = game.physics.p2.createCollisionGroup();
     enemyAirCG = game.physics.p2.createCollisionGroup();
     enemyGroundCG = game.physics.p2.createCollisionGroup();
