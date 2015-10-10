@@ -14,11 +14,18 @@ function createUI (currentState) {
         textObjects.add(scoreText);
         
         //we would do a similar block of code for the keys
-        for (i = 1; i <= player_lives; i++){
+        for (i = 1; i <= player_lives; i++) {
             heart = game.add.sprite(34 * i, 32, 'ui', 1);
             heart.anchor.setTo(0.5, 0.5);
             heart.fixedToCamera = true;
             textObjects.add(heart);
+        }
+
+        for (i = 1; i <= player_keys; i++) {
+            key = game.add.sprite(34 * i, 82, 'ui', 1);
+            key.anchor.setTo(0.5, 0.5);
+            key.fixedToCamera = true;
+            textObjects.add(key);
         }
     
 }
@@ -29,6 +36,43 @@ function createUI (currentState) {
 function createObjects(currentState){
 	//empty for now, need to fill when we add new objects, such as coins, powerups, keys, etc.
 	createUI(currentState);
+
+    // doors = game.add.group();
+    // map.createFromObjects('objects', 150, 'door', 1, true, false, doors); //questionmark  (99 eckunten rechts)
+    // doors.forEach(DoorIt, this);
+    // gameObjects.add(doors);
+
+    coins = game.add.group();
+    map.createFromObjects('objects', 150, 'questionmark', 1, true, false, coins); //questionmark  (99 eckunten rechts)
+    coins.forEach(ApplyQuestionSprite, this);
+    gameObjects.add(coins);
+}
+
+function DoorIt(door){
+    // game.physics.p2.enable(questionmark);
+    // questionmark.body.y += 32;  //since we are replacing a 32x32 tile with a 64x64 object we need to adjust
+    // questionmark.body.static=true;
+    // questionmark.body.sprite.name='coin';
+    // questionmark.body.setCollisionGroup(questionmarkCG);
+    // questionmark.body.collides([playerCG,fireballCG,powerupsCG]);
+    // questionmark.body.setMaterial(groundMaterial);
+    console.log("Door!");
+}
+
+function ApplyQuestionSprite(questionmark){
+    game.physics.p2.enable(questionmark);
+    console.log("hello door!");
+    questionmark.body.y += 32;  //since we are replacing a 32x32 tile with a 64x64 object we need to adjust
+    questionmark.body.static=true;
+    questionmark.body.sprite.name='coin';
+    questionmark.body.setCollisionGroup(questionmarkCG);
+    questionmark.body.collides([playerCG,fireballCG,powerupsCG]);
+    questionmark.body.setMaterial(groundMaterial);
+}
+
+function hitQuestionmark(player,questionmark) {
+    console.log("stop hitting me!");
+    //player_keys--;
 }
 
 //================================================================================

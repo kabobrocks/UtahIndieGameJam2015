@@ -13,6 +13,10 @@ function setupLayers(layerObjectsMaterial, mainLayerMaterial) {
     layerropes = map.createLayer('ropes');
     layerropes.visible = false;
 
+    //doors---------------------------------------------------
+    layerDoors = map.createLayer('doorlayer');
+    layerDoors.visible = false;
+
 	//layer foreground
 	layerForeground = map.createLayer('foreground');
 	layerForeground.resizeWorld(); //resize the world to be the same size as the foreground layer
@@ -23,6 +27,7 @@ function setupLayers(layerObjectsMaterial, mainLayerMaterial) {
 	//add to game objects
 	gameObjects.add(layerBackground);
 	gameObjects.add(layerForeground);
+	gameObjects.add(layerDoors);
 
 	//give physics rules to each of our layers
 	layerObjects_tiles = game.physics.p2.convertCollisionObjects(map, 'objects');
