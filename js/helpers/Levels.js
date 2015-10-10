@@ -9,6 +9,10 @@ function setupLayers(layerObjectsMaterial, mainLayerMaterial) {
 
 	//create the layers, this pulls from the JSON file
 
+    //ropes---------------------------------------------------
+    layerropes = map.createLayer('ropes');
+    layerropes.visible = false;
+
 	//layer foreground
 	layerForeground = map.createLayer('foreground');
 	layerForeground.resizeWorld(); //resize the world to be the same size as the foreground layer

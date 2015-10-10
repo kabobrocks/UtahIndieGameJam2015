@@ -29,6 +29,56 @@ function setupPhysics() {
 	game.canvas.oncontextmenu = function (e) {	e.preventDefault();	};
 }
 
+//================================================================================
+// COLLISION DETECTION RATE
+//================================================================================
+
+function shootSensor(buttonanchor){
+    if (docked){destroyAnchor();}
+    if (sensorexists || chainAnchor || !player_chain ){return}  //don't fire twice
+
+    sensor = anchorgroup.create(player.x, player.y, 'anchor',3);
+    game.physics.p2.enable(sensor,false);
+    sensor.body.data.gravityScale=0;
+    sensor.body.setCollisionGroup(fireballCG);
+    sensor.body.collides([groundCG,questionmarkCG,enemyAirCG,enemyGroundCG]);
+    sensor.body.createGroupCallback(groundCG, sensorCollision, this);
+    sensor.body.createGroupCallback(questionmarkCG, sensorCollision, this);
+    sensor.alpha=0.5;
+    if(buttonanchor){
+        circlebuttonAngle = angleBetween(buttonanchor, game.input);
+        sensorAngle=Math.degrees(circlebuttonAngle);
+        sensor.body.angle=sensorAngle;
+        sensor.body.velocity.x = Math.cos(circlebuttonAngle) * 2000;
+        sensor.body.velocity.y = Math.sin(circlebuttonAngle) * 2000;
+    }
+    else {
+        sensorAngle = Math.atan2(game.camera.y+game.input.y - player.y, game.camera.x+game.input.x - player.x);
+        sensorAngle=Math.degrees(sensorAngle);
+        sensor.body.angle=sensorAngle;
+        moveToPointer(sensor,2000);  //object, speed
+    }
+}
+
+function sensorCollision(thissensor,ground){
+    if (sensorexists == true) {return} else {  sensorexists=true;}  //this is important because otherwise the collision callback would be fired more than once
+    sensorX = thissensor.x;
+    sensorY = thissensor.y;
+    if (thissensor) { thissensor.sprite.kill();}
+    if (sensor) {sensor.kill();}
+
+    wallAnchor = anchorgroup.create(sensorX, sensorY, 'anchor',3);   //duplicate the sensor and use this one for the constraint.. this is neccesary because the rotated and fast-shot "sensor" is not good for precise constraints - it's physics body properties seem to be way off
+    game.physics.p2.enable(wallAnchor,false);
+    wallAnchor.body.setCollisionGroup(groundCG);
+    wallAnchor.body.collides([fireballCG]);
+    wallAnchor.body.static=true;
+    wallAnchor.alpha=0;
+    sensorDistance = distanceBetweenPoints([player.body.x,player.body.y],[sensorX,sensorY])  //point [x,y], point [x,y]
+    chainLength = Math.round(sensorDistance / 19);
+    if (chainLength != 0){  createChainElement(0, chainLength); } // create first chainelement the chainAnchor
+    else {destroyAnchor();}
+}
+
 function destroyAnchor(){
 	chainSectionCount = 0;
 	accelerate = false;  

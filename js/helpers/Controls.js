@@ -22,6 +22,7 @@ function setupControls() {
 var jumpspeedx = 0;
 
 function jump_now(){
+	console.log("jump!");
 	if (gamestate == 'win' || gamestate == 'lost') {
 		return;
 	}
