@@ -1,6 +1,7 @@
 //Level1 State
 var Level1 = {
 	create: function() {
+		console.log('level 1 loaded');
 		//reset the state variables
 		gamestate = 'running';
 		climbing = false;
@@ -11,7 +12,7 @@ var Level1 = {
 		music.play('', 0 ,3, true);
 
 		//load the background
-		sky = game.add.tilesprite(0, 0, worldwidth, worldheight, 'clouds');
+		sky = game.add.tileSprite(0, 0, worldwidth, worldheight, 'clouds');
 		sky.fixedToCamera = true;
 		paralax0 = game.add.tileSprite(0, 0, 6600, 660, 'mariofront');
 		paralax1 = game.add.tileSprite(0, 0, 6600, 660, 'mariomiddle');

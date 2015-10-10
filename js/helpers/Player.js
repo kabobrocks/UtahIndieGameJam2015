@@ -4,14 +4,14 @@
 
 function setupPlayer(playerX, playerY) {
     if (player_health == 3) { //change the sprite if you are at full health
-        player = game.add.sprite(playerX, playerY, 'mariowhite'); 
+        player = game.add.sprite(playerX, playerY, 'pirate'); 
     }
     else { //normal sprite 
-        player = game.add.sprite(playerX, playerY, 'mario');
+        player = game.add.sprite(playerX, playerY, 'pirate');
     }
     game.physics.p2.enable(player, false); 
     player.health = player_health;
-    player.name = 'mario';
+    player.name = 'pirate';
     player.chain = player_chain;
     player.body.fixedRotation = true; 
     if (player_health == 1) { //make character smaller if you are at one helth
@@ -26,14 +26,14 @@ function setupPlayer(playerX, playerY) {
     player.body.setCollisionGroup(playerCG);
     player.body.setMaterial(playerMaterial);
     player.body.collides([groundCG, levelEndCG]); //what is the player going to interact with
-    player.body.createGroupCallback(levelEndCG, finishLevel); //when the player interacts with a collision group, what happens?
+    //player.body.createGroupCallback(levelEndCG, finishLevel); //when the player interacts with a collision group, what happens?
 
     setupPlayerLooks(player);
     
     game.camera.follow(player);  //self explanatory
 
     //createWeapon(weapon_selected);
-    gameobjects.add(player);
+    gameObjects.add(player);
 }
 
 //================================================================================
@@ -44,9 +44,9 @@ function setupPlayerLooks(player, color){
         player.loadTexture(color,5);
     }
 
-    player.animations.add('walk', [1,2,3,4,3,2], 10, true);
-    player.animations.add('duckwalk', [10,11,12], 3, true);
-    player.animations.add('climb', [13,14,15,16], 5, true);
+    player.animations.add('walk', [0], 1, true);
+    player.animations.add('duckwalk', [0], 1, true);
+    player.animations.add('climb', [0], 1, true);
 }
 
 function playerAnimations(player) {
