@@ -28,6 +28,7 @@ function setupLayers(layerObjectsMaterial, mainLayerMaterial) {
 	gameObjects.add(layerBackground);
 	gameObjects.add(layerForeground);
 	gameObjects.add(layerDoors);
+	//gameObjects.add(layerPirateAIs);
 
 	//give physics rules to each of our layers
 	layerObjects_tiles = game.physics.p2.convertCollisionObjects(map, 'objects');
@@ -45,6 +46,26 @@ function setupLayers(layerObjectsMaterial, mainLayerMaterial) {
 		layerMain_tiles[i].setMaterial(groundMaterial);
 	}
 }
+
+function clearTimers() {
+    for (i = 0; i <= 2; i++){
+        game.time.events.remove(timerEvents[i]);
+    }
+}
+
+function rebootLevel() {
+    clearTimers();
+
+    // maybe some sort of level is unlocked and available for picking at the stage selection screen? -JR 
+
+    //game over  - do not unlock just go back to levelmenu
+    if (player_lives == 0) {
+    	game.state.start('endgame', true, false);
+    } else { 
+    	game.state.start(''+level+'', true, false); 
+    }
+}
+
 
 
 //================================================================================

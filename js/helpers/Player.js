@@ -20,8 +20,9 @@ function setupPlayer(playerX, playerY) {
     player.body.allowSleep = true; 
     player.body.setCollisionGroup(playerCG);
     player.body.setMaterial(playerMaterial);
-    player.body.collides([groundCG, levelEndCG, questionmarkCG]); //what is the player going to interact with
+    player.body.collides([groundCG, levelEndCG, questionmarkCG, computerAICG]); //what is the player going to interact with
     player.body.createGroupCallback(questionmarkCG, hitQuestionmark);
+    player.body.createGroupCallback(computerAICG, interactWithNPC);
     //player.body.createGroupCallback(levelEndCG, finishLevel); //when the player interacts with a collision group, what happens?
 
     setupPlayerLooks(player);
@@ -267,5 +268,5 @@ function playerDie(player, enemy) {  //this gets a phaser.physics.body  so no fu
     game.sound.play('lose', 0.3);  // key, volume
     player.moveUp(300);
     player.collideWorldBounds = false; // can fall out of game world
-    //timerEvents[1] = game.time.events.add(Phaser.Timer.SECOND * 4, startNextLevel, this);
+    timerEvents[1] = game.time.events.add(Phaser.Timer.SECOND * 2, rebootLevel, this);
 }
