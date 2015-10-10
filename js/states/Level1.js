@@ -12,10 +12,14 @@ var Level1 = {
 		music.play('', 0 ,3, true);
 
 		//load the background
-		sky = game.add.tileSprite(0, 0, worldwidth, worldheight, 'clouds');
+		sky = game.add.tileSprite(0, 0, worldwidth, worldheight, 'bg-level1-sky');
 		sky.fixedToCamera = true;
-		paralax0 = game.add.tileSprite(0, 0, 6600, 660, 'mariofront');
-		paralax1 = game.add.tileSprite(0, 0, 6600, 660, 'mariomiddle');
+		paralax0 = game.add.tileSprite(50, -20, 6600, 660, 'bg-level1-middle');
+		paralax0.fixedToCamera = true;
+		
+		paralax1 = game.add.tileSprite(0, 0, 6600, 660, 'bg-level1-front');
+		paralax1.fixedToCamera = true;
+
 
 		//create groups
 		gameObjects = game.add.group();
@@ -43,6 +47,6 @@ var Level1 = {
 		setupPlayer(150, 500);
 	},
 	update: function() {
-		updateLevel(0.5, 0.3); //these parameters measure the rate at which the paralax backgrounds move
+		updateLevel(0.05, 0.1); //these parameters measure the rate at which the paralax backgrounds move
 	}
 }

@@ -48,6 +48,7 @@ function setupLayers(layerObjectsMaterial, mainLayerMaterial) {
 function paralaxBackgrounds (prlx1, prlx0) {
     paralax1.x = game.camera.x * prlx1; 
     paralax0.x = game.camera.x * prlx0; 
+
 }
 
 function updateLevel(prlx1, prlx0) {
