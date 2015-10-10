@@ -14,12 +14,7 @@ function setupPlayer(playerX, playerY) {
     player.name = 'pirate';
     player.chain = player_chain;
     player.body.fixedRotation = true; 
-    if (player_health == 1) { //make character smaller if you are at one helth
-        player.scale.setTo(0.8,0.8);
-        playershape = player.body.setCircle(15,0,4);
-    } else { //be normal size
-        playershape = player.body.setCircle(20,0,4);
-    }
+    playershape = player.body.setCircle(29,0,4);
 
     player.body.data.gravityScale = 1;
     player.body.allowSleep = true; 
