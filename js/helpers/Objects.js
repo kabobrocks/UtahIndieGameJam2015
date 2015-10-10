@@ -2,25 +2,25 @@
 // CREATE USER INTERFACE
 //================================================================================   
 function createUI (currentState) {
-    if (currentstate != 'menu') {
+    
         coin = game.add.sprite(game.camera.width / 2, 32, 'ui', 0)
         coin.fixedToCamera = true;
         coin.anchor.setTo(0.5, 0.5);
-        textobjects.add(coin);
+        //textObjects.add(coin);
     
         scoreText = game.add.text(game.camera.width / 2 + 20, 26, ' x ' + score, { fill: '#ececec', font: '16px Arial' });
         scoreText.fixedToCamera = true; 
         scoreText.x = game.camera.width - scoreText.width / 2;
-        textobjects.add(scoreText);
+        textObjects.add(scoreText);
         
         //we would do a similar block of code for the keys
         for (i = 1; i <= player_lives; i++){
             heart = game.add.sprite(34 * i, 32, 'ui', 1);
             heart.anchor.setTo(0.5, 0.5);
             heart.fixedToCamera = true;
-            textobjects.add(heart);
+            textObjects.add(heart);
         }
-    }
+    
 }
 
 //================================================================================

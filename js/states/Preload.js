@@ -11,6 +11,7 @@ var PreloadState = {
 		game.load.setPreloadSprite(preloadbar);
 
 		//load all of the spritesheets
+		game.load.image('pirate','assets/pirate.png', 64,64);
 
 		//load all of the images
 
@@ -22,15 +23,17 @@ var PreloadState = {
 
 		//load our tilemaps
 		game.load.tilemap('level1', './assets/tilesets/level1.json', null, Phaser.Tilemap.TILED_JSON);
-		game.load.image('mariotileset', './assets/tilesets/mariotileset');
+		game.load.image('mariotileset', './assets/tilesets/mariotileset.png');
+
 	},
 	create: function() {
 		var preloadText = game.add.text(game.world.centerX, game.world.centerY - 40, 'Use the arrow keys to move | Space to jump | I to interact', {fill: '#ececec', font: '12px Arial' });
 		preloadText.x = game.world.centerX - preloadText.width / 2;
 		preloadbar.crop.width = preloadbar.width;
-		var tween = game.add.tween(preloadbar).to({ alpha: 0 }, 1000, Phaser.Easing.Liner.None, true);
+		var tween = game.add.tween(preloadbar).to({ alpha: 0 }, 1000, Phaser.Easing.Linear.None, true);
 		tween.onComplete.addOnce(function() {
-			game.state.start('Level1');
+			game.state.start('1');
+			//game.state.start('level1'); //change to this when menu exists!
 		})
 	}
 }
