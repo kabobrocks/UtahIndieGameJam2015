@@ -26,7 +26,8 @@ var jumpspeedx = 0;
 
 function jump_now() {
 	console.log("jump!");
-	if (gamestate == 'win' || gamestate == 'lost') {
+	if (gamestate == 'postGame') {
+		game.state.start(1, true, false);
 		return;
 	}
 
@@ -52,11 +53,11 @@ function jump_now() {
 	} else { //just a normal jump doing jumping things
 		if (touchingDown(player.body)){ //if the player is touching the ground
 			game.sound.play('jump', .1);
-			player.body.moveUp(700);
+			player.body.moveUp(575);
 			jumpHeightCounter = 1;
 		} else if (jumpHeightCounter == 1) { //oh you want to double jump?
 			game.sound.play('jump', .1);
-			player.body.moveUp(700);
+			player.body.moveUp(475);
 			jumpHeightCounter = 0; //no more jumps available
 		}
 	}
@@ -64,8 +65,12 @@ function jump_now() {
 
 function interact_now() {
 	if (AIText != null) {
-		console.log("I accept!");
 		AIText.kill();
 		AIText = null;
 	}
+}
+
+function testInput() {
+	console.log("you got here!");
+	secretWalls.destroy();
 }

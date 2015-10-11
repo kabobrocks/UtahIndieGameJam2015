@@ -3,6 +3,9 @@
 //================================================================================
 
 function setupLayers(layerObjectsMaterial, mainLayerMaterial) {
+
+	AIText = null;
+
 	if(!layerObjectsMaterial) {
 		layerObjectsMaterial = groundMaterial;
 	}
@@ -60,7 +63,7 @@ function rebootLevel() {
 
     //game over  - do not unlock just go back to levelmenu
     if (player_lives == 0) {
-    	game.state.start('endgame', true, false);
+    	game.state.start('gameOver', true, false);
     } else { 
     	game.state.start(''+level+'', true, false); 
     }

@@ -20,9 +20,12 @@ function setupPlayer(playerX, playerY) {
     player.body.allowSleep = true; 
     player.body.setCollisionGroup(playerCG);
     player.body.setMaterial(playerMaterial);
-    player.body.collides([groundCG, levelEndCG, questionmarkCG, computerAICG]); //what is the player going to interact with
+    player.body.collides([groundCG, levelEndCG, questionmarkCG, computerAICG, keyCG, secretWallCG, goalCG, secretGoalCG]); //what is the player going to interact with
     player.body.createGroupCallback(questionmarkCG, hitQuestionmark);
     player.body.createGroupCallback(computerAICG, interactWithNPC);
+    player.body.createGroupCallback(keyCG, pickupKey);
+    player.body.createGroupCallback(goalCG, collectGoal);
+    player.body.createGroupCallback(secretGoalCG, collectSecretGoal);
     //player.body.createGroupCallback(levelEndCG, finishLevel); //when the player interacts with a collision group, what happens?
 
     setupPlayerLooks(player);
@@ -256,11 +259,12 @@ function playerInputActions(){
     }   
 }
 
-function playerDie(player, enemy) {  //this gets a phaser.physics.body  so no further .body needed.. to acces sprite write .sprite
+function playerDie(player, enemy) {  //this gets a phaser.physics.body  so no further .body needed.. to access sprite write .sprite
     gamestate = 'lost';
     player_lives -= 1;
     player_health = 1;
     player_chain = false;
+    AIText = null;
 
     player.clearCollision(true, true);  //no collision with anything anymore
     music.pause();
