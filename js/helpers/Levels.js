@@ -14,8 +14,8 @@ function setupLayers(layerObjectsMaterial, mainLayerMaterial) {
     layerropes.visible = false;
 
     //doors---------------------------------------------------
-    layerDoors = map.createLayer('doorlayer');
-    layerDoors.visible = false;
+    //layerDoors = map.createLayer('doorlayer');
+    //layerDoors.visible = false;
 
 	//layer foreground
 	layerForeground = map.createLayer('foreground');
@@ -27,7 +27,7 @@ function setupLayers(layerObjectsMaterial, mainLayerMaterial) {
 	//add to game objects
 	//gameObjects.add(layerBackground);
 	gameObjects.add(layerForeground);
-	gameObjects.add(layerDoors);
+	//gameObjects.add(layerDoors);
 	//gameObjects.add(layerPirateAIs);
 
 	//give physics rules to each of our layers
