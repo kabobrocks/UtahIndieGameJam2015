@@ -34,7 +34,7 @@ var PreloadState = {
 
 		//load our tilemaps
 		game.load.tilemap('level1', './assets/tilesets/level1.json', null, Phaser.Tilemap.TILED_JSON);
-		game.load.image('mariotileset', './assets/tilesets/mariotileset.png');
+		game.load.image('pirateTileSet', './assets/tilesets/piratetileset.png');
 
 	},
 	create: function() {
