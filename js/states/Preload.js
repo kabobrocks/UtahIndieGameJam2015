@@ -45,6 +45,7 @@ var PreloadState = {
 		game.load.audio('doorOpen', '/assets/sounds/doorOpen.wav');
 		game.load.audio('doorLocked', '/assets/sounds/doorLocked.wav');
 		game.load.audio('talkToAI', '/assets/sounds/talkToAI.wav');
+		game.load.audio('level1', '/assets/sounds/level1.mp3');
 
 		//load our tilemaps
 		game.load.tilemap('level1', './assets/tilesets/level1.json', null, Phaser.Tilemap.TILED_JSON);
