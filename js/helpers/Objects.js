@@ -183,10 +183,17 @@ function pickupKey(player, key) {
 }
 
 function collectGoal(player, goal) {
+    if (doneText == null) {
+        game.sound.play('talkToAI', 0.3);
+        doneText = game.add.sprite(400, 90, 'scroll1');
+        doneText.scale.setTo(.5, .5);
+        doneText.anchor.setTo(.5, .5);
+        doneText.fixedToCamera = true;
+    }
     //create a victory sound and play here
-    music.pause();
-    console.log("normal goal");
-    game.state.start("win");
+    // music.pause();
+    // console.log("normal goal");
+    // game.state.start("win");
 }
 
 function collectSecretGoal(player, secretGoal) {

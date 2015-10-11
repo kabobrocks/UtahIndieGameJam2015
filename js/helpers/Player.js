@@ -135,19 +135,19 @@ function playerInputActions(){
         if (hitboxchanged === true){ //control player shape and speed according to its health
             hitboxchanged = false; 
             if (player.health >= 2 && (cursors.down.isDown || duck)) { 
-                playershape.radius = game.physics.p2.pxm(15);
-                player_speed = 150;
+                //playershape.radius = game.physics.p2.pxm(15);
+                //player_speed = 150;
             } else if (player.health >= 2 && !(jumpKey.isDown || jump) && checkAbove() && !(cursors.down.isDown || duck)) {
-                playershape.radius = game.physics.p2.pxm(15);
-                player_speed = 150;
+                //playershape.radius = game.physics.p2.pxm(15);
+                //player_speed = 150;
             } else if (player.health >= 2 && !(cursors.down.isDown || duck)) { 
-                playershape.radius = game.physics.p2.pxm(20);
-                player_speed = 300;
-                air_friction = 400;
+                //playershape.radius = game.physics.p2.pxm(20);
+                //player_speed = 300;
+                //air_friction = 400;
             } else {  
-                playershape.radius = game.physics.p2.pxm(15);
-                player_speed = 250; 
-                air_friction = 300;
+                //playershape.radius = game.physics.p2.pxm(15);
+                //player_speed = 250; 
+                //air_friction = 300;
             } 
         } else if (cursors.left.isDown && !cursors.down.isDown  || left && !duck) { //Move to the left
             player.scale.x = -1;
@@ -168,7 +168,7 @@ function playerInputActions(){
                 player.body.data.force[0] = air_friction;
             }     
         } else if (cursors.down.isDown && cursors.left.isDown || left && duck) { //Duck and go left
-            hitboxchanged = true; 
+            //hitboxchanged = true; 
             if (player.health >= 2) {
                 playerstate = 'duckwalk';
             } else {
@@ -177,7 +177,7 @@ function playerInputActions(){
             player.scale.x = -1;
             player.body.moveLeft(player_speed);
         } else if (cursors.down.isDown && cursors.right.isDown || right && duck) { //Duck and go right
-            hitboxchanged = true; 
+            //hitboxchanged = true; 
             if (player.health >= 2){
                 playerstate = 'duckwalk';
             } else {
@@ -186,7 +186,7 @@ function playerInputActions(){
             player.scale.x = 1;
             player.body.moveRight(player_speed);
         } else if (cursors.down.isDown && !cursors.left.isDown && !cursors.right.isDown || duck && !left && !right) { //No moving, more ducking!
-            hitboxchanged = true;
+            //hitboxchanged = true;
             if (player.health >= 2) {
                 playerstate = 'duck';
             } else {
