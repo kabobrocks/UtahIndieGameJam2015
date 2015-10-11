@@ -26,7 +26,6 @@ function createDoorKeyUI (currentState) {
     doorKeyObjects = game.add.group();
 
     for (i = 1; i <= player_keys; i++) {
-        console.log("keys!" + i)
         doorKey = game.add.sprite(40 * i, 90, 'doorkey');
         doorKey.anchor.setTo(0.5, 0.5);
         doorKey.fixedToCamera = true;
@@ -43,20 +42,35 @@ function createObjects(currentState){
 	createUI(currentState);
     createDoorKeyUI(currentState);
 
-    // doors = game.add.group();
-    // map.createFromObjects('objects', 150, 'door', 1, true, false, doors); //questionmark  (99 eckunten rechts)
-    // doors.forEach(DoorIt, this);
-    // gameObjects.add(doors);
-
     coins = game.add.group();
     map.createFromObjects('objects', 150, 'questionmark', 1, true, false, coins); //questionmark  (99 eckunten rechts)
     coins.forEach(ApplyQuestionSprite, this);
     gameObjects.add(coins);
 
     pirateAI = game.add.group();
-    map.createFromObjects('objects', 95, 'skellies', 1, true, false, pirateAI);
+    map.createFromObjects('objects', 76, 'skellies', 1, true, false, pirateAI);
     pirateAI.forEach(ApplyPirateSprite, this);
     gameObjects.add(pirateAI);
+
+    keyItems = game.add.group();
+    map.createFromObjects('objects', 114, 'doorkey', 1, true, false, keyItems);
+    keyItems.forEach(ApplyKeySprite, this);
+    gameObjects.add(keyItems);
+
+    secretWalls = game.add.group();
+    map.createFromObjects('objects', 57, 'chest', 1, true, false, secretWalls);
+    secretWalls.forEach(ApplySecretWallSprite, this);
+    gameObjects.add(secretWalls);
+
+    goal = game.add.group();
+    map.createFromObjects('objects', 190, 'goal', 1, true, false, goal);
+    goal.forEach(ApplyGoalSprite, this);
+    gameObjects.add(goal);
+
+    secretGoal = game.add.group();
+    map.createFromObjects('objects', 209, 'secretGoal', 1, true, false, secretGoal);
+    secretGoal.forEach(ApplySecretGoalSprite, this);
+    gameObjects.add(secretGoal);
 }
 
 function DoorIt(door){
@@ -67,50 +81,117 @@ function DoorIt(door){
     // questionmark.body.setCollisionGroup(questionmarkCG);
     // questionmark.body.collides([playerCG,fireballCG,powerupsCG]);
     // questionmark.body.setMaterial(groundMaterial);
-    console.log("Door!");
 }
 
-function ApplyQuestionSprite(questionmark){
+//================================================================================
+// Apply Sprites/Physics to Objects
+//================================================================================
+
+function ApplyQuestionSprite(questionmark) {
     game.physics.p2.enable(questionmark);
     questionmark.body.y += 32;  //since we are replacing a 32x32 tile with a 64x64 object we need to adjust
-    questionmark.body.static=true;
-    questionmark.body.sprite.name='coin';
+    questionmark.body.static = true;
+    questionmark.body.sprite.name = 'coin';
     questionmark.body.setCollisionGroup(questionmarkCG);
     questionmark.body.collides([playerCG,fireballCG,powerupsCG]);
     questionmark.body.setMaterial(groundMaterial);
 }
 
-function ApplyPirateSprite(pirateAI){
+function ApplyPirateSprite(pirateAI) {
     //console.log(pirateAI);
     game.physics.p2.enable(pirateAI);
     pirateAI.body.y += 32;  //since we are replacing a 32x32 tile with a 64x64 object we need to adjust
-    pirateAI.body.static=true;
+    pirateAI.body.static = true;
     pirateAI.body.sprite.name = pirateAI.name;
     pirateAI.body.setCollisionGroup(computerAICG);
     pirateAI.body.collides([playerCG,fireballCG,powerupsCG]);
     pirateAI.body.setMaterial(groundMaterial);
 }
 
-function hitQuestionmark(player,questionmark) {
+function ApplyKeySprite(key) {
+    game.physics.p2.enable(key);
+    key.body.y += 32;  //since we are replacing a 32x32 tile with a 64x64 object we need to adjust
+    key.body.static = true;
+    key.body.sprite.name = "doorkey";
+    key.body.setCollisionGroup(keyCG);
+    key.body.collides([playerCG,fireballCG,powerupsCG]);
+    key.body.setMaterial(groundMaterial);
+}
+
+function ApplySecretWallSprite(secretWall) {
+    game.physics.p2.enable(secretWall);
+    secretWall.body.y += 32;  //since we are replacing a 32x32 tile with a 64x64 object we need to adjust
+    secretWall.body.static = true;
+    secretWall.body.sprite.name = "secretWall";
+    secretWall.body.setCollisionGroup(secretWallCG);
+    secretWall.body.collides([playerCG]);
+    secretWall.body.setMaterial(groundMaterial);
+}
+
+function ApplyGoalSprite(goal) {
+    game.physics.p2.enable(goal);
+    goal.body.y += 32;  //since we are replacing a 32x32 tile with a 64x64 object we need to adjust
+    goal.body.static = true;
+    goal.body.sprite.name = "goal";
+    goal.body.setCollisionGroup(goalCG);
+    goal.body.collides([playerCG]);
+    goal.body.setMaterial(groundMaterial);
+}
+
+function ApplySecretGoalSprite(secretGoal) {
+    game.physics.p2.enable(secretGoal);
+    secretGoal.body.y += 32;  //since we are replacing a 32x32 tile with a 64x64 object we need to adjust
+    secretGoal.body.static = true;
+    secretGoal.body.sprite.name = "goal";
+    secretGoal.body.setCollisionGroup(secretGoalCG);
+    secretGoal.body.collides([playerCG]);
+    secretGoal.body.setMaterial(groundMaterial);
+}
+
+//================================================================================
+// Player Interactions with Objects
+//================================================================================
+
+function hitQuestionmark(player, questionmark) {
     if (player_keys > 0) {
         player_keys--;
-        console.log(player_keys);
+        game.sound.play('doorOpen', 0.3);
         doorKeyObjects.destroy();
         questionmark.sprite.kill();
         createDoorKeyUI();
+    } else {
+        game.sound.play('doorLocked', 0.3);
     }
 }
 
-function interactWithNPC(player,computerAI) {
-    console.log("these happy days!");
+function interactWithNPC(player, computerAI) {
     if (AIText == null) {
-        console.log(computerAI.sprite.name);
+        game.sound.play('talkToAI', 0.3);
         AIText = game.add.sprite(400, 90, computerAI.sprite.name);
         AIText.scale.setTo(.5, .5);
         AIText.anchor.setTo(0.5, 0.5);
         AIText.fixedToCamera = true;   
     }
-    //doorKeyObjects.add(doorKey);
+}
+
+function pickupKey(player, key) {
+    player_keys++;
+    doorKeyObjects.destroy();
+    key.sprite.kill();
+    game.sound.play('keyPickup', 0.3);  // key, volume
+    createDoorKeyUI();
+}
+
+function collectGoal(player, goal) {
+    //create a victory sound and play here
+    console.log("normal goal");
+    game.state.start("win");
+}
+
+function collectSecretGoal(player, secretGoal) {
+    //create a victory sound and play here
+    console.log("secret goal");
+    game.state.start("secret-win");
 }
 
 //================================================================================
