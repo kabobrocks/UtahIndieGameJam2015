@@ -43,7 +43,7 @@ function createObjects(currentState){
     createDoorKeyUI(currentState);
 
     coins = game.add.group();
-    map.createFromObjects('objects', 150, 'questionmark', 1, true, false, coins); //questionmark  (99 eckunten rechts)
+    map.createFromObjects('objects', 95, 'questionmark', 1, true, false, coins); //questionmark  (99 eckunten rechts)
     coins.forEach(ApplyQuestionSprite, this);
     gameObjects.add(coins);
 
