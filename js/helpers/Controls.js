@@ -16,6 +16,9 @@ function setupControls() {
 
 	acceptKey = game.input.keyboard.addKey(Phaser.Keyboard.I);
 	acceptKey.onDown.add(interact_now, this);
+
+	quitKey = game.input.keyboard.addKey(Phaser.Keyboard.Q);
+	quitKey.onDown.add(quit_now, this);
 }
 
 //================================================================================
@@ -67,6 +70,18 @@ function interact_now() {
 	if (AIText != null) {
 		AIText.kill();
 		AIText = null;
+	}
+
+	if (doneText != null) {
+		doneText.kill();
+		doneText = null;
+	}
+}
+
+function quit_now() {
+	if (doneText != null) {
+		music.pause();
+		game.state.start('win');
 	}
 }
 

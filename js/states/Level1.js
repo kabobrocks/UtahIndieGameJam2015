@@ -8,7 +8,8 @@ var Level1 = {
 
 		//load and play the music
 		music = game.add.audio('level1', 1, true); //key, volume, loop
-		music.play('', 0 ,3, true);
+		music.volume = .1;
+		music.play('', 0 ,.1, true);
 
 		//load the background
 		sky = game.add.tileSprite(0, 0, worldwidth, worldheight, 'bg-level1-sky');
