@@ -11,7 +11,7 @@ function setupLayers(layerObjectsMaterial, mainLayerMaterial) {
 
     //ropes---------------------------------------------------
     layerropes = map.createLayer('ropes');
-    layerropes.visible = true;
+    layerropes.visible = false;
 
     //doors---------------------------------------------------
     layerDoors = map.createLayer('doorlayer');
