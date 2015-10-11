@@ -12,12 +12,19 @@ var PreloadState = {
 
 		//load all of the spritesheets
 		game.load.spritesheet('questionmark', 'assets/door.png', 64, 64);
+		game.load.spritesheet('skellies', 'assets/skellies.png', 64, 64);
 
 		//load all of the images
-		game.load.image('door', '/assets/door.png', 64, 64);
-		game.load.image('pirate','assets/pirate.png', 64, 64);
+		game.load.image('door', '/assets/door.png');
+		game.load.image('pirate','assets/pirate.png');
 		game.load.image('doorkey', '/assets/doorkey.png');
 		game.load.image('lifesaver', '/assets/lifesaver.png');
+
+
+		//loading the hint scrolls
+		game.load.image('scroll1', '/assets/scroll1.png');
+		game.load.image('scroll2', '/assets/scroll2.png');
+		game.load.image('scroll3', '/assets/scroll3.png');
 
 		//load background level stuff
 		game.load.image('bg-level1-sky','assets/bg-level1-sky.jpg');
