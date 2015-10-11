@@ -11,7 +11,7 @@ function setupLayers(layerObjectsMaterial, mainLayerMaterial) {
 
     //ropes---------------------------------------------------
     layerropes = map.createLayer('ropes');
-    layerropes.visible = false;
+    layerropes.visible = true;
 
     //doors---------------------------------------------------
     layerDoors = map.createLayer('doorlayer');
@@ -22,10 +22,10 @@ function setupLayers(layerObjectsMaterial, mainLayerMaterial) {
 	layerForeground.resizeWorld(); //resize the world to be the same size as the foreground layer
 
 	//layer background---------------------------------------------------
-    layerBackground = map.createLayer('background');
+    //layerBackground = map.createLayer('background');
 
 	//add to game objects
-	gameObjects.add(layerBackground);
+	//gameObjects.add(layerBackground);
 	gameObjects.add(layerForeground);
 	gameObjects.add(layerDoors);
 	//gameObjects.add(layerPirateAIs);
