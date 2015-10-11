@@ -35,7 +35,7 @@ var Level1 = {
 
 		//initialize tilemap
 		map = game.add.tilemap('level1');
-		map.addTilesetImage('mariotileset');
+		map.addTilesetImage('pirateTileSet');
 
 		//set up all of the layers
 		setupLayers();
@@ -43,7 +43,7 @@ var Level1 = {
 		createObjects();
 
 		//where are we placing the player?
-		setupPlayer(150, 500);
+		setupPlayer(50, 50);
 	},
 	update: function() {
 		updateLevel(0.05, 0.1); //these parameters measure the rate at which the paralax backgrounds move
