@@ -12,22 +12,30 @@ var PreloadState = {
 
 		//load all of the spritesheets
 		game.load.spritesheet('questionmark', 'assets/door.png', 64, 64);
-		game.load.spritesheet('skellies', 'assets/skellies.png', 64, 64);
+		//game.load.spritesheet('skellies', 'assets/skellies.png', 64, 64);
 
 		//load all of the images
-		game.load.image('door', '/assets/door.png');
+		game.load.image('door', 'assets/door.png');
 		game.load.image('pirate','assets/pirate.png');
-		game.load.image('doorkey', '/assets/doorkey.png');
-		game.load.image('lifesaver', '/assets/lifesaver.png');
-		game.load.image('chest', '/assets/chest.png');
-		game.load.image('happyFace', '/assets/happyFace.png');
-		game.load.image('tiny_face', '/assets/tiny_face.png');
+		game.load.spritesheet('pirateSpriteSheet', 'assets/pirateSpritesheet.png', 64, 64);
+		game.load.image('doorkey', 'assets/doorkey.png');
+		game.load.image('lifesaver', 'assets/lifesaver.png');
+		game.load.image('chest', 'assets/chest.png');
+		game.load.image('secretWall', 'assets/secretWall.png');
+		game.load.image('happyFace', 'assets/happyFace.png');
+		game.load.image('tiny_face', 'assets/tiny_face.png');
+		game.load.image('goal', 'assets/goal.png');
+		game.load.image('secretGoal', 'assets/secretGoal.png');
+		game.load.image('skelly', 'assets/skelly.png');
+		game.load.image('ending1', 'assets/ending1.jpg');
+		game.load.image('ending2', 'assets/ending2.jpg');
 
 
 		//loading the hint scrolls
-		game.load.image('scroll1', '/assets/scroll1.png');
-		game.load.image('scroll2', '/assets/scroll2.png');
-		game.load.image('scroll3', '/assets/scroll3.png');
+		game.load.image('scroll1a', 'assets/scroll1a.png');
+		game.load.image('scroll2a', 'assets/scroll2a.png');
+		game.load.image('scroll3a', 'assets/scroll3a.png');
+		game.load.image('scroll4a', 'assets/scroll4a.png');
 
 		//load background level stuff
 		game.load.image('bg-level1-sky','assets/bg-level1-sky.jpg');
@@ -39,17 +47,17 @@ var PreloadState = {
 		//load any weapons we may include
 
 		//load our sounds
-		game.load.audio('jump', '/assets/sounds/jump.wav');
-		game.load.audio('lose', '/assets/sounds/lose.wav');
-		game.load.audio('keyPickup', '/assets/sounds/keyPickup.wav');
-		game.load.audio('doorOpen', '/assets/sounds/doorOpen.wav');
-		game.load.audio('doorLocked', '/assets/sounds/doorLocked.wav');
-		game.load.audio('talkToAI', '/assets/sounds/talkToAI.wav');
-		game.load.audio('level1', '/assets/sounds/level1.mp3');
+		game.load.audio('jump', 'assets/sounds/jump.wav');
+		game.load.audio('lose', 'assets/sounds/lose.wav');
+		game.load.audio('keyPickup', 'assets/sounds/keyPickup.wav');
+		game.load.audio('doorOpen', 'assets/sounds/doorOpen.wav');
+		game.load.audio('doorLocked', 'assets/sounds/doorLocked.wav');
+		game.load.audio('talkToAI', 'assets/sounds/talkToAI.wav');
+		game.load.audio('level1', 'assets/sounds/level1.mp3');
 
 		//load our tilemaps
-		game.load.tilemap('level1', './assets/tilesets/level1.json', null, Phaser.Tilemap.TILED_JSON);
-		game.load.image('pirateTileSet', './assets/tilesets/piratetileset.png');
+		game.load.tilemap('level1', 'assets/tilesets/level1.json', null, Phaser.Tilemap.TILED_JSON);
+		game.load.image('pirateTileSet', 'assets/tilesets/piratetileset.png');
 
 	},
 	create: function() {

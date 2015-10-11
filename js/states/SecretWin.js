@@ -10,11 +10,8 @@ var SecretWinState = {
 	},
 	create: function() {
 		setupControls();
-		console.log(game.world.centerX);
-		endText = game.add.text(worldwidth / 2,(worldheight / 2),"You found the secret treasure room! You are the greatest pirate who ever lived!", {fill: '#ececec', font: '12px Arial'});
-		endText.anchor.setTo(0.5,0.5);
-		happyFace = game.add.sprite(worldwidth / 2, worldheight / 4, 'tiny_face');
-		happyFace.scale.setTo(0.5,0.5);
-		happyFace.anchor.setTo(0.5,0.5);
+		endText = game.add.text(worldwidth / 2,(worldheight / 2),"You found the secret treasure room! You are the greatest pirate who ever lived! Press Space to Adventure Again!", {fill: '#ececec', font: '12px Arial'});
+		endText.anchor.setTo(0.5, 0.5);
+		happyFace = game.add.sprite(0, 0, 'ending2');
 	}
 }

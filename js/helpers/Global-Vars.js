@@ -1,8 +1,7 @@
 //some variables
 var level = 1;  //change this to start in a different level
-var levels = 7;  // 0, 1, 2 ,3, 4 ,5, 6  Don't forget to change this! (and add the state)
-var player_health = 1;  //lowest level is 1  - don't set to 3 without a gun (fireflower)
-var weapon_selected = 'sword';  //fireflower, sword
+var levels = 7;
+var player_health = 1;  //lowest level is 1
 var player_chain = false; 
 var player_lives = 3;
 var player_keys = 0;

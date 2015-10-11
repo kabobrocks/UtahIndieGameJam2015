@@ -4,10 +4,10 @@
 
 function setupPlayer(playerX, playerY) {
     if (player_health == 3) { //change the sprite if you are at full health
-        player = game.add.sprite(playerX, playerY, 'pirate'); 
+        player = game.add.sprite(playerX, playerY, 'pirateSpriteSheet'); 
     }
     else { //normal sprite 
-        player = game.add.sprite(playerX, playerY, 'pirate');
+        player = game.add.sprite(playerX, playerY, 'pirateSpriteSheet');
     }
     game.physics.p2.enable(player, false); 
     player.health = player_health;
@@ -26,6 +26,7 @@ function setupPlayer(playerX, playerY) {
     player.body.createGroupCallback(keyCG, pickupKey);
     player.body.createGroupCallback(goalCG, collectGoal);
     player.body.createGroupCallback(secretGoalCG, collectSecretGoal);
+    player.body.createGroupCallback(secretWallCG, interactSecretWall);
     //player.body.createGroupCallback(levelEndCG, finishLevel); //when the player interacts with a collision group, what happens?
 
     setupPlayerLooks(player);
@@ -46,13 +47,19 @@ function setupPlayerLooks(player, color){
         player.loadTexture(color,5);
     }
 
-    player.animations.add('walk', [0], 1, true);
-    player.animations.add('duckwalk', [0], 1, true);
-    player.animations.add('climb', [0], 1, true);
+    player.animations.add('walk', [0,1,2,3,4,5,6], 8, true);
 }
 
 function playerAnimations(player) {
     //set custom animations when we have a sprite sheet made
+    if (playerstate === "walk") { 
+        player.animations.play('walk');
+    } else if (playerstate === "jump") {
+        player.animations.stop();
+        player.frame = 7;
+    } else { 
+        player.frame = 0;
+    }
 }
 
 //================================================================================
@@ -69,7 +76,6 @@ function resetInputs() {
 }
 
 function playerInputActions(){
-
     if (climbing == true) {
         player.body.setZeroVelocity();
         // Sets directions for climbing, checking if you are still in a climbable area
@@ -253,7 +259,7 @@ function playerInputActions(){
                 } else {
                     createChainElement(chainSectionCount, chainLength);
                     createChainElement(chainSectionCount, chainLength);
-                } // slow down chainelement creation..  every second frame create a new element 
+                } // slow down chain element creation..  every second frame create a new element 
             }   
         }
     }   
