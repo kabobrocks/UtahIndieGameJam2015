@@ -28,7 +28,6 @@ function setupControls() {
 var jumpspeedx = 0;
 
 function jump_now() {
-	console.log("jump!");
 	if (gamestate == 'postGame') {
 		game.state.start(1, true, false);
 		return;
@@ -85,7 +84,6 @@ function quit_now() {
 	}
 }
 
-function testInput() {
-	console.log("you got here!");
+function breakWalls() {
 	secretWalls.destroy();
 }

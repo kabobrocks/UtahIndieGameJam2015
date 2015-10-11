@@ -10,10 +10,10 @@ var WinState = {
 	},
 	create: function() {
 		setupControls();
-		endText = game.add.text(worldwidth / 2,(worldheight / 2),"You made it to the end! However, you did not find Grandpa Skellybones' greatest treasure!", {fill: '#ececec', font: '12px Arial'});
-		endText.anchor.setTo(0.5,0.5);
-		happyFace = game.add.sprite(worldwidth / 2, worldheight / 4, 'happyFace');
-		happyFace.scale.setTo(0.25,0.25);
-		happyFace.anchor.setTo(0.5,0.5);
+		endText = game.add.text(worldwidth / 2,(worldheight / 2),"You made it to the end! However, you did not find Grandpa Skellybones' greatest treasure! Press Space to Try Again!", {fill: '#ececec', font: '12px Arial'});
+		endText.anchor.setTo(0.5, 0.5);
+		happyFace = game.add.sprite(0, 0, 'ending1');
+		// happyFace.scale.setTo(0.25, 0.25);
+		// happyFace.anchor.setTo(0.5, 0.5);
 	}
 }

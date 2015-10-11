@@ -1,25 +1,13 @@
 //================================================================================
 // CREATE USER INTERFACE
 //================================================================================   
-function createUI (currentState) {
-    
-        coin = game.add.sprite(game.camera.width / 2, 32, 'ui', 0)
-        coin.fixedToCamera = true;
-        coin.anchor.setTo(0.5, 0.5);
-        //textObjects.add(coin);
-    
-        scoreText = game.add.text(game.camera.width / 2 + 20, 26, ' x ' + score, { fill: '#ececec', font: '16px Arial' });
-        scoreText.fixedToCamera = true; 
-        scoreText.x = game.camera.width - scoreText.width / 2;
-        textObjects.add(scoreText);
-        
-        for (i = 1; i <= player_lives; i++) {
-            heart = game.add.sprite(50 * i, 32, 'lifesaver');
-            heart.anchor.setTo(0.5, 0.5);
-            heart.fixedToCamera = true;
-            textObjects.add(heart);
-        }
-    
+function createUI (currentState) {        
+    for (i = 1; i <= player_lives; i++) {
+        heart = game.add.sprite(50 * i, 32, 'lifesaver');
+        heart.anchor.setTo(0.5, 0.5);
+        heart.fixedToCamera = true;
+        textObjects.add(heart);
+    }
 }
 
 function createDoorKeyUI (currentState) {
@@ -31,7 +19,6 @@ function createDoorKeyUI (currentState) {
         doorKey.fixedToCamera = true;
         doorKeyObjects.add(doorKey);
     }
-
 }
 
 //================================================================================
@@ -48,7 +35,7 @@ function createObjects(currentState){
     gameObjects.add(coins);
 
     pirateAI = game.add.group();
-    map.createFromObjects('objects', 76, 'skellies', 1, true, false, pirateAI);
+    map.createFromObjects('objects', 76, 'skelly', 1, true, false, pirateAI);
     pirateAI.forEach(ApplyPirateSprite, this);
     gameObjects.add(pirateAI);
 
@@ -58,7 +45,7 @@ function createObjects(currentState){
     gameObjects.add(keyItems);
 
     secretWalls = game.add.group();
-    map.createFromObjects('objects', 57, 'chest', 1, true, false, secretWalls);
+    map.createFromObjects('objects', 57, 'secretWall', 1, true, false, secretWalls);
     secretWalls.forEach(ApplySecretWallSprite, this);
     gameObjects.add(secretWalls);
 
@@ -90,6 +77,7 @@ function DoorIt(door){
 function ApplyQuestionSprite(questionmark) {
     game.physics.p2.enable(questionmark);
     questionmark.body.y += 32;  //since we are replacing a 32x32 tile with a 64x64 object we need to adjust
+    questionmark.body.x += 32;
     questionmark.body.static = true;
     questionmark.body.sprite.name = 'coin';
     questionmark.body.setCollisionGroup(questionmarkCG);
@@ -101,6 +89,7 @@ function ApplyPirateSprite(pirateAI) {
     //console.log(pirateAI);
     game.physics.p2.enable(pirateAI);
     pirateAI.body.y += 32;  //since we are replacing a 32x32 tile with a 64x64 object we need to adjust
+    pirateAI.body.x += 32;
     pirateAI.body.static = true;
     pirateAI.body.sprite.name = pirateAI.name;
     pirateAI.body.setCollisionGroup(computerAICG);
@@ -111,6 +100,7 @@ function ApplyPirateSprite(pirateAI) {
 function ApplyKeySprite(key) {
     game.physics.p2.enable(key);
     key.body.y += 32;  //since we are replacing a 32x32 tile with a 64x64 object we need to adjust
+    key.body.x += 32;
     key.body.static = true;
     key.body.sprite.name = "doorkey";
     key.body.setCollisionGroup(keyCG);
@@ -121,6 +111,7 @@ function ApplyKeySprite(key) {
 function ApplySecretWallSprite(secretWall) {
     game.physics.p2.enable(secretWall);
     secretWall.body.y += 32;  //since we are replacing a 32x32 tile with a 64x64 object we need to adjust
+    secretWall.body.x += 32;
     secretWall.body.static = true;
     secretWall.body.sprite.name = "secretWall";
     secretWall.body.setCollisionGroup(secretWallCG);
@@ -130,7 +121,9 @@ function ApplySecretWallSprite(secretWall) {
 
 function ApplyGoalSprite(goal) {
     game.physics.p2.enable(goal);
-    goal.body.y += 32;  //since we are replacing a 32x32 tile with a 64x64 object we need to adjust
+    goal.body.y += 48;  //since we are replacing a 32x32 tile with a 64x64 object we need to adjust
+    goal.body.x += 32;
+    goal.scale.x = -1;
     goal.body.static = true;
     goal.body.sprite.name = "goal";
     goal.body.setCollisionGroup(goalCG);
@@ -140,7 +133,9 @@ function ApplyGoalSprite(goal) {
 
 function ApplySecretGoalSprite(secretGoal) {
     game.physics.p2.enable(secretGoal);
-    secretGoal.body.y += 32;  //since we are replacing a 32x32 tile with a 64x64 object we need to adjust
+    secretGoal.body.y += 93;  //since we are replacing a 32x32 tile with a 64x64 object we need to adjust
+    secretGoal.body.x += 64;
+    secretGoal.scale.x = -1;
     secretGoal.body.static = true;
     secretGoal.body.sprite.name = "goal";
     secretGoal.body.setCollisionGroup(secretGoalCG);
@@ -185,22 +180,27 @@ function pickupKey(player, key) {
 function collectGoal(player, goal) {
     if (doneText == null) {
         game.sound.play('talkToAI', 0.3);
-        doneText = game.add.sprite(400, 90, 'scroll1');
+        doneText = game.add.sprite(400, 90, 'scroll4a');
         doneText.scale.setTo(.5, .5);
         doneText.anchor.setTo(.5, .5);
         doneText.fixedToCamera = true;
+
     }
-    //create a victory sound and play here
-    // music.pause();
-    // console.log("normal goal");
-    // game.state.start("win");
 }
 
 function collectSecretGoal(player, secretGoal) {
     //create a victory sound and play here
     music.pause();
-    console.log("secret goal");
     game.state.start("secret-win");
+}
+
+function interactSecretWall(player, secretWall) {
+        answer = prompt("Enter the password using all 3 hints. No Spaces!");
+        if (answer == "GIMMESKELLYTREASURE") {
+            breakWalls();
+        } else {
+            alert("Incorrect. Find all secrets to learn the password!");
+        }
 }
 
 //================================================================================
