@@ -184,12 +184,14 @@ function pickupKey(player, key) {
 
 function collectGoal(player, goal) {
     //create a victory sound and play here
+    music.pause();
     console.log("normal goal");
     game.state.start("win");
 }
 
 function collectSecretGoal(player, secretGoal) {
     //create a victory sound and play here
+    music.pause();
     console.log("secret goal");
     game.state.start("secret-win");
 }

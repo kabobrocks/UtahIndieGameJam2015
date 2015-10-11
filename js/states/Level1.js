@@ -8,6 +8,7 @@ var Level1 = {
 
 		//load and play the music
 		music = game.add.audio('level1', 1, true); //key, volume, loop
+		music.volume = .1;
 		music.play('', 0 ,3, true);
 
 		//load the background
