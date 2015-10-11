@@ -19,6 +19,9 @@ var PreloadState = {
 		game.load.image('pirate','assets/pirate.png');
 		game.load.image('doorkey', '/assets/doorkey.png');
 		game.load.image('lifesaver', '/assets/lifesaver.png');
+		game.load.image('chest', '/assets/chest.png');
+		game.load.image('happyFace', '/assets/happyFace.png');
+		game.load.image('tiny_face', '/assets/tiny_face.png');
 
 
 		//loading the hint scrolls
@@ -38,6 +41,10 @@ var PreloadState = {
 		//load our sounds
 		game.load.audio('jump', '/assets/sounds/jump.wav');
 		game.load.audio('lose', '/assets/sounds/lose.wav');
+		game.load.audio('keyPickup', '/assets/sounds/keyPickup.wav');
+		game.load.audio('doorOpen', '/assets/sounds/doorOpen.wav');
+		game.load.audio('doorLocked', '/assets/sounds/doorLocked.wav');
+		game.load.audio('talkToAI', '/assets/sounds/talkToAI.wav');
 
 		//load our tilemaps
 		game.load.tilemap('level1', './assets/tilesets/level1.json', null, Phaser.Tilemap.TILED_JSON);
