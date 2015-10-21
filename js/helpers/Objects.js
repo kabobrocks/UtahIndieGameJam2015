@@ -29,10 +29,17 @@ function createObjects(currentState){
 	createUI(currentState);
     createDoorKeyUI(currentState);
 
+    //coins objects is all doors
+
+
+    // if coins is currently in the local storage, overwrite coins from the line below with what is in the localstorage
+    //coins = localstorage.getItem('coins'); //JSON string
+    //else {
     coins = game.add.group();
     map.createFromObjects('objects', 95, 'questionmark', 1, true, false, coins); //questionmark  (99 eckunten rechts)
     coins.forEach(ApplyQuestionSprite, this);
     gameObjects.add(coins);
+    //}
 
     pirateAI = game.add.group();
     map.createFromObjects('objects', 76, 'skelly', 1, true, false, pirateAI);
@@ -148,12 +155,14 @@ function ApplySecretGoalSprite(secretGoal) {
 //================================================================================
 
 function hitQuestionmark(player, questionmark) {
+    //questionmarks are doors
     if (player_keys > 0) {
         player_keys--;
         game.sound.play('doorOpen', 0.3);
         doorKeyObjects.destroy();
-        questionmark.sprite.kill();
+        questionmark.sprite.destroy();
         createDoorKeyUI();
+        console.log(coins.children);
     } else {
         game.sound.play('doorLocked', 0.3);
     }
@@ -167,6 +176,9 @@ function interactWithNPC(player, computerAI) {
         AIText.anchor.setTo(0.5, 0.5);
         AIText.fixedToCamera = true;   
     }
+    console.log(computerAI.sprite.x);
+    localStorage.setItem('playerX', computerAI.sprite.x);
+    localStorage.setItem('playerY', computerAI.sprite.y - 70);
 }
 
 function pickupKey(player, key) {

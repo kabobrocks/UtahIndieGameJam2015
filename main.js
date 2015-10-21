@@ -8,6 +8,5 @@ game.state.add('1', Level1);
 game.state.add('win', WinState);
 game.state.add('secret-win', SecretWinState);
 game.state.add('gameOver', GameOverState);
-
 //load the boot state and start the game
 game.state.start('Boot');

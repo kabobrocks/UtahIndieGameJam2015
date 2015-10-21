@@ -44,7 +44,14 @@ var Level1 = {
 		createObjects();
 
 		//where are we placing the player?
-		setupPlayer(50, 50);
+		if (localStorage.getItem('playerX') != null) {
+			console.log("hello");
+			setupPlayer(localStorage.getItem('playerX'), localStorage.getItem('playerY'));
+		} else {
+			console.log("hi");
+			setupPlayer(50, 50);	
+		}
+		
 	},
 	update: function() {
 		updateLevel(0.05, 0.1); //these parameters measure the rate at which the paralax backgrounds move
