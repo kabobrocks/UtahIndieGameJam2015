@@ -231,6 +231,11 @@ function playerInputActions(){
             resetInputs();
         }
 
+        if (touchingDown(player.body)) {
+            onAir = false;
+        } else {
+            onAir = true;
+        }
         //on air material should change to ice.. do not stick to anything!
         if (onAir === true) {
             player.body.setMaterial(iceMaterial);

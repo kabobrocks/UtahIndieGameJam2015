@@ -32,7 +32,6 @@ function jump_now() {
 		game.state.start(1, true, false);
 		return;
 	}
-
 	destroyAnchor();
 
 	if (climbing === true ) { //get out of climb mode

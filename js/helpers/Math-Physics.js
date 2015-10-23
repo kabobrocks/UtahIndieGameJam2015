@@ -15,10 +15,12 @@ function setupPhysics() {
 
 	//define materials
 	groundMaterial = game.physics.p2.createMaterial('ground');
+    iceMaterial = game.physics.p2.createMaterial('ice');
 	playerMaterial = game.physics.p2.createMaterial('player');
 
 	//define what happens when one material contacts the other
 	game.physics.p2.createContactMaterial(playerMaterial, groundMaterial, { friction: 2, restitution: 0 });
+    game.physics.p2.createContactMaterial(iceMaterial, groundMaterial, { friction: 0, restitution: 0 });
 
 	//define collisiongroups
 	playerCG = game.physics.p2.createCollisionGroup();

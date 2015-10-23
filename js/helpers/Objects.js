@@ -162,7 +162,7 @@ function hitQuestionmark(player, questionmark) {
         doorKeyObjects.destroy();
         questionmark.sprite.destroy();
         createDoorKeyUI();
-        console.log(coins.children);
+        //console.log(coins.children);
     } else {
         game.sound.play('doorLocked', 0.3);
     }
@@ -203,12 +203,14 @@ function collectGoal(player, goal) {
 function collectSecretGoal(player, secretGoal) {
     //create a victory sound and play here
     music.pause();
+    localStorage.clear();
+    player_keys = 0;
     game.state.start("secret-win");
 }
 
 function interactSecretWall(player, secretWall) {
         answer = prompt("Enter the password using all 3 hints. No Spaces!");
-        if (answer == "GIMMESKELLYTREASURE") {
+        if (answer.toUpperCase() == "GIMMESKELLYTREASURE") {
             breakWalls();
         } else {
             alert("Incorrect. Find all secrets to learn the password!");
