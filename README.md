@@ -7,7 +7,7 @@ Secrets
 
 ## Technologies Used
 * NodeJS
-* Socket.io
+* Phaser JS Library
 
 ## Link to Play Game
 https://escapetherobots.itch.io/kabobrocks-pirategame
